@@ -2,6 +2,8 @@
 
 基于 FastMCP 框架构建的邮件收发 MCP 服务器，支持多种邮箱服务商的邮件收发和附件处理功能。
 
+在 https://modelscope.cn/mcp/servers/s3219521aa/MCP_Agent_Challenge_email163_mcp 的基础上增加了用户自定义发送邮箱的功能。
+
 ## 🚀 FastMCP 框架特性
 
 FastMCP 提供了简洁的 Python 风格接口，只需使用装饰器即可将函数封装为 MCP 工具：
