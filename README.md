@@ -23,28 +23,69 @@ if __name__ == "__main__":
 
 ## 📧 提供的邮件工具
 
-### 邮件接收
+邮件接收
 - `get_newest_email`: 获取最新的未读邮件
 - `check_emails`: 检查指定类型和数量的邮件  
 - `save_attachment`: 保存邮件附件到指定路径
 
-### 邮件发送
+邮件发送
 - `send_text_email`: 发送纯文本邮件
 - `send_html_email`: 发送HTML格式邮件
 - `send_email_with_attachment`: 发送带附件的邮件
 
-### 服务器配置
+服务器配置
 - `get_server_config`: 自动获取邮箱服务器配置
 
-## 📦 安装与运行（使用 uv）
 
-### 安装依赖
+工具调用示例
+
+```json
+{
+  "name": "send_text_email",
+  "arguments": {
+    "to_addr": "recipient@example.com",
+    "subject": "测试邮件",
+    "content": "这是一封测试邮件",
+    "account": "your-email@163.com", 
+    "password": "your-auth-code"
+  }
+}
+```
+
+## ⚡ 快速测试
+
+使用 MCP Inspector 一键拉起 PyPI 包进行测试：
+
+```bash
+npx @modelcontextprotocol/inspector uvx fastmcp_email_server
+```
+相关包已发布至 [PyPI](https://pypi.org/project/fastmcp-email-server/)
+
+
+MCP 客户端测试配置
+
+```json
+{
+  "mcpServers": {
+    "fastmcp_email_server_pypi": {
+      "command": "uvx",
+      "args": [
+        "fastmcp-email-server"
+      ]
+    }
+  }
+}
+```
+
+## 📦 本地安装与运行（使用 uv）
+
+安装依赖
 
 ```bash
 uv sync
 ```
 
-### 以模块方式运行（推荐）
+以模块方式运行（推荐）
 
 ```bash
 uv run -m fastmcp_email_server
@@ -56,47 +97,20 @@ uv run -m fastmcp_email_server
 uv run fastmcp-email-server
 ```
 
-### 直接运行源码（可选）
+直接运行源码（可选）
 
 ```bash
 uv run python src/fastmcp_email_server/server.py
 ```
 
-## 🔧 调试模式
 
-使用 MCP Inspector 进行调试：
+使用 MCP Inspector 进行调试（可选）
 
 ```bash
 uv run mcp dev src/fastmcp_email_server/server.py
 ```
 
-访问 http://localhost:5173 进行交互测试。
-
-## ⚡ 快速测试
-
-使用 MCP Inspector 一键拉起 PyPI 包进行测试：
-
-```bash
-npx @modelcontextprotocol/inspector uvx fastmcp_email_server
-```
-
-相关包已发布至 [PyPI](https://pypi.org/project/fastmcp-email-server/)。
-
-## 📋 支持的邮箱服务商
-
-- 163邮箱（163.com）
-- 126邮箱（126.com）  
-- QQ邮箱（qq.com）
-- Gmail（gmail.com）
-- Outlook/Hotmail（outlook.com, hotmail.com）
-- 阿里云邮箱（aliyun.com）
-- 新浪邮箱（sina.com）
-
-## 💡 使用示例
-
-### 配置 MCP 客户端
-
-在支持 MCP 的客户端（Claude Desktop、Cherry Studio、Cursor 等）中配置：
+在支持 MCP 的客户端（Claude Desktop、Cherry Studio、Cursor 等）中配置（可选）
 
 ```json
 {
@@ -114,36 +128,6 @@ npx @modelcontextprotocol/inspector uvx fastmcp_email_server
 }
 ```
 
-### MCP 客户端测试配置
-
-```json
-{
-  "mcpServers": {
-    "fastmcp_email_server_pypi": {
-      "command": "uvx",
-      "args": [
-        "fastmcp-email-server"
-      ]
-    }
-  }
-}
-```
-
-### 工具调用示例
-
-```json
-{
-  "name": "send_text_email",
-  "arguments": {
-    "to_addr": "recipient@example.com",
-    "subject": "测试邮件",
-    "content": "这是一封测试邮件",
-    "account": "your-email@163.com", 
-    "password": "your-auth-code"
-  }
-}
-```
-
 ## 🔐 邮箱授权码说明
 
 大多数邮箱服务商需要使用授权码而不是登录密码：
@@ -152,6 +136,16 @@ npx @modelcontextprotocol/inspector uvx fastmcp_email_server
 - **QQ邮箱**: 设置 → 账户 → 开启POP3/IMAP服务并获取授权码
 - **Gmail**: 开启两步验证并生成应用专用密码
 
+支持的邮箱服务商
+
+- 163邮箱（163.com）
+- 126邮箱（126.com）  
+- QQ邮箱（qq.com）
+- Gmail（gmail.com）
+- Outlook/Hotmail（outlook.com, hotmail.com）
+- 阿里云邮箱（aliyun.com）
+- 新浪邮箱（sina.com）
+  
 ## 📁 项目结构
 
 ```
@@ -168,3 +162,5 @@ src/
 ## ☁ ModelScope 部署
 
 - 可将 `fastmcp_email_server` 作为模型服务部署到 ModelScope 平台，便于快速上线邮件相关的 MCP 工具能力。
+- 见：https://modelscope.cn/mcp/servers/RIckyQ/FastMCP_email_server 
+- 支持 Streamable HTTP 和 SSE 协议。
