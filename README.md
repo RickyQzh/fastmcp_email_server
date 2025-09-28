@@ -72,6 +72,16 @@ uv run mcp dev src/fastmcp_email_server/server.py
 
 访问 http://localhost:5173 进行交互测试。
 
+## ⚡ 快速测试
+
+使用 MCP Inspector 一键拉起 PyPI 包进行测试：
+
+```bash
+npx @modelcontextprotocol/inspector uvx fastmcp_email_server
+```
+
+相关包已发布至 [PyPI](https://pypi.org/project/fastmcp-email-server/)。
+
 ## 📋 支持的邮箱服务商
 
 - 163邮箱（163.com）
@@ -99,6 +109,21 @@ uv run mcp dev src/fastmcp_email_server/server.py
     "fastmcp_email_server"
   ],
       "env": {}
+    }
+  }
+}
+```
+
+### MCP 客户端测试配置
+
+```json
+{
+  "mcpServers": {
+    "fastmcp_email_server_pypi": {
+      "command": "uvx",
+      "args": [
+        "fastmcp-email-server"
+      ]
     }
   }
 }
@@ -139,3 +164,7 @@ src/
     ├── send_163.py          # 邮件发送功能
     └── receive_163.py       # 邮件接收功能
 ```
+
+## ☁ ModelScope 部署
+
+- 可将 `fastmcp_email_server` 作为模型服务部署到 ModelScope 平台，便于快速上线邮件相关的 MCP 工具能力。
